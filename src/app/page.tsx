@@ -308,11 +308,11 @@ const PROJECTS = [
 const AnimatedCounter = ({ value, suffix = '', decimals = 0 }: { value: number, suffix?: string, decimals?: number }) => {
     const spring = useSpring(0, { stiffness: 100, damping: 30 });
     const display = useTransform(spring, (v) => v.toFixed(decimals) + suffix);
-    
+
     useEffect(() => {
         spring.set(value);
     }, [value, spring]);
-    
+
     return <motion.span>{display}</motion.span>;
 };
 
@@ -324,7 +324,7 @@ const ProgressBar = ({ value, color = 'emerald' }: { value: number, color?: stri
         amber: 'from-amber-500 to-amber-600',
         red: 'from-red-500 to-red-600'
     };
-    
+
     return (
         <div className="w-full h-1.5 bg-zinc-800 rounded-full overflow-hidden">
             <motion.div
@@ -367,7 +367,7 @@ const SectionExplanation = ({ title, whatItIs, whatItDoes, whyItMatters, valuePr
             </div>
             {isExpanded ? <ChevronUp size={16} className="text-zinc-500" /> : <ChevronDown size={16} className="text-zinc-500" />}
         </button>
-        
+
         <AnimatePresence>
             {isExpanded && (
                 <motion.div
@@ -481,13 +481,13 @@ export default function PortfolioHub() {
     }, []);
 
     return (
-        <div className="min-h-screen bg-[#050506] text-zinc-100 font-mono selection:bg-red-600/30 overflow-x-hidden">
+        <div className="min-h-screen bg-[#050506] text-zinc-100 font-mono selection:bg-red-600/30 overflow-x-hidden overflow-y-auto">
             <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-0"
                 style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '60px 60px' }}
             />
             <div className="fixed inset-0 tactical-grid opacity-20 pointer-events-none z-0" />
             <div className="fixed inset-0 scanlines opacity-5 pointer-events-none z-0" />
-            
+
             <div className="fixed inset-0 pointer-events-none z-0">
                 {[...Array(20)].map((_, i) => (
                     <div
@@ -514,7 +514,7 @@ export default function PortfolioHub() {
                                         PORTFOLIO_ACCESS_GRANTED
                                     </div>
                                 </Tooltip>
-                                
+
                                 <Tooltip content="UTC Time: All timestamps across this dashboard are displayed in Coordinated Universal Time to ensure global consistency for distributed teams.">
                                     <div className="flex items-center gap-3 bg-black/60 px-4 py-2 carbon-plate border border-zinc-900 rounded-sm cursor-help">
                                         <Clock className="w-4 h-4 text-red-600" />
@@ -523,11 +523,11 @@ export default function PortfolioHub() {
                                         </span>
                                     </div>
                                 </Tooltip>
-                                
+
                                 <Tooltip content="Live Status: All systems are operational and processing real-time event streams. No incidents detected in the last 24 hours.">
                                     <StatusBadge status="LIVE" type="success" />
                                 </Tooltip>
-                                
+
                                 <Tooltip content="Data Streaming: Real-time event ingestion is active. Processing 208,000 events per second with sub-100ms latency.">
                                     <div className="flex items-center gap-2 text-[9px] font-black text-zinc-600 uppercase tracking-widest cursor-help">
                                         <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
@@ -541,7 +541,7 @@ export default function PortfolioHub() {
                                     CAUSAL <br />
                                     <span className="text-zinc-800">ENGINE</span> <span className="text-red-700">SUITE</span>
                                 </h1>
-                                
+
                                 <SectionExplanation
                                     title="Dashboard Overview"
                                     whatItIs="The Causal Engine Suite is a unified command center for 9 production-grade attribution engines deployed across Netflix, Disney+, Uber, Airbnb, and Meta."
@@ -551,7 +551,7 @@ export default function PortfolioHub() {
                                     isExpanded={expandedSection === 'header'}
                                     onToggle={() => setExpandedSection(expandedSection === 'header' ? null : 'header')}
                                 />
-                                
+
                                 <div className="flex flex-col gap-4 pl-3 border-l-4 border-red-700/20">
                                     <p className="text-lg md:text-xl text-zinc-500 max-w-xl font-black leading-tight uppercase font-mono italic">
                                         {">"} Mission-critical data products for <span className="text-zinc-200">global enterprise attribution</span> and decision intelligence.
@@ -583,7 +583,7 @@ export default function PortfolioHub() {
                         <div className="w-full xl:w-[420px] flex flex-col gap-4">
                             <div className="relative rounded-2xl flex flex-col gap-0 group">
                                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-500 via-cyan-500 to-blue-500 opacity-0 group-hover:opacity-20 transition-opacity duration-700 rounded-2xl blur-xl pointer-events-none" />
-                                
+
                                 <div className="relative bg-gradient-to-br from-zinc-900/90 via-zinc-800/80 to-zinc-900/90 backdrop-blur-xl border border-white/10 rounded-2xl p-6 flex flex-col gap-5">
                                     <div className="flex justify-between items-center px-1 relative">
                                         <div className="absolute left-0 top-1/2 -translate-y-1/2 w-px h-6 bg-gradient-to-b from-transparent via-emerald-500/50 to-transparent" />
@@ -594,7 +594,7 @@ export default function PortfolioHub() {
                                             <span className="text-[9px] font-black text-emerald-400 uppercase tracking-tighter">Synchronized</span>
                                         </div>
                                     </div>
-                                    
+
                                     <div className="grid grid-cols-3 gap-3">
                                         <Tooltip content="System Health: Composite score based on uptime (40%), error rates (30%), latency (20%), and throughput (10%). Score above 85% is considered healthy.">
                                             <div className="text-center p-3 bg-zinc-900/50 rounded-lg border border-white/5 cursor-help">
@@ -623,7 +623,7 @@ export default function PortfolioHub() {
                                             </div>
                                         </Tooltip>
                                     </div>
-                                    
+
                                     <div className="space-y-3">
                                         <Tooltip content="Attribution Kernels: Core inference engines (Markov-Shapley, Bayesian MMM, DML, etc.) processing real-time attribution. 9/9 operational with 100% uptime in last 30 days.">
                                             <div className="relative group/item p-3 bg-gradient-to-r from-emerald-500/10 via-emerald-500/5 to-transparent border border-emerald-500/20 rounded-lg hover:from-emerald-500/20 hover:border-emerald-500/40 transition-all duration-300 cursor-help">
@@ -637,7 +637,7 @@ export default function PortfolioHub() {
                                                 <ProgressBar value={100} color="emerald" />
                                             </div>
                                         </Tooltip>
-                                        
+
                                         <Tooltip content="ML Compute Clusters: GPU clusters (A100/V100) running model training and inference. Currently locked to prevent unauthorized model updates. SOC 2 compliant.">
                                             <div className="relative group/item p-3 bg-gradient-to-r from-blue-500/10 via-blue-500/5 to-transparent border border-blue-500/20 rounded-lg hover:from-blue-500/20 hover:border-blue-500/40 transition-all duration-300 cursor-help">
                                                 <div className="flex items-center justify-between relative z-10 mb-2">
@@ -650,7 +650,7 @@ export default function PortfolioHub() {
                                                 <ProgressBar value={92} color="blue" />
                                             </div>
                                         </Tooltip>
-                                        
+
                                         <Tooltip content="Governance Nodes: Compliance and audit infrastructure ensuring all models meet regulatory requirements (GDPR, CCPA, SOC 2). Last audit: PASSED (Jan 2026).">
                                             <div className="relative group/item p-3 bg-gradient-to-r from-purple-500/10 via-purple-500/5 to-transparent border border-purple-500/20 rounded-lg hover:from-purple-500/20 hover:border-purple-500/40 transition-all duration-300 cursor-help">
                                                 <div className="flex items-center justify-between relative z-10 mb-2">
@@ -664,9 +664,9 @@ export default function PortfolioHub() {
                                             </div>
                                         </Tooltip>
                                     </div>
-                                    
+
                                     <Tooltip content="⚠️ CRITICAL ACTION: This will deploy all 9 attribution engines simultaneously across all regions. This includes: (1) Pre-flight health checks, (2) Canary deployment to 5% traffic, (3) 5-minute monitoring period, (4) Full rollout if metrics stable. Rollback available at any time. Estimated duration: 8 minutes.">
-                                        <button 
+                                        <button
                                             onClick={handleDeploy}
                                             className="relative w-full py-4 group/btn"
                                         >
@@ -931,7 +931,7 @@ export default function PortfolioHub() {
 
                 <footer className="relative py-16 border-t border-white/5">
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-zinc-900/50 to-transparent opacity-50" />
-                    
+
                     <div className="relative flex flex-col lg:flex-row justify-between items-start gap-12">
                         <div className="flex flex-col gap-6">
                             <div className="flex items-center gap-6 flex-wrap">
@@ -944,9 +944,9 @@ export default function PortfolioHub() {
                                         <span className="text-[10px] font-black uppercase tracking-[0.6em] text-zinc-600 group-hover/status:text-zinc-200 transition-colors duration-300">CORE_SYSTEMS_ACTIVE</span>
                                     </div>
                                 </Tooltip>
-                                
+
                                 <div className="h-6 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent hidden lg:block" />
-                                
+
                                 <Tooltip content="Cluster Health: Virginia cluster (VA-01-MARSCI) is the primary production cluster. All nodes healthy.">
                                     <div className="flex flex-col group/cluster cursor-help">
                                         <span className="text-[9px] font-black uppercase tracking-[0.3em] text-zinc-700 group-hover/cluster:text-zinc-300 italic transition-colors duration-300">LAST_HEARTBEAT: 2026-01-31</span>
@@ -954,7 +954,7 @@ export default function PortfolioHub() {
                                     </div>
                                 </Tooltip>
                             </div>
-                            
+
                             <Tooltip content="Security Status: All systems are encrypted (TLS 1.3), certified (SOC 2 Type II), and audited quarterly. GDPR/CCPA compliant.">
                                 <div className="flex items-center gap-3 text-[8px] font-black uppercase tracking-widest text-zinc-700 cursor-help">
                                     <LockIcon size={12} />
@@ -968,7 +968,7 @@ export default function PortfolioHub() {
                                 </div>
                             </Tooltip>
                         </div>
-                        
+
                         <div className="flex gap-8 text-[9px] font-black uppercase tracking-[0.5em] text-zinc-700 flex-wrap">
                             <Tooltip content="📋 Protocols: View system protocols, API documentation, integration guides, and SLAs for all attribution engines.">
                                 <span className="cursor-crosshair hover:text-white hover:scale-110 transition-all duration-300">PROTOCOLS</span>
@@ -986,7 +986,7 @@ export default function PortfolioHub() {
                                 <span className="cursor-crosshair hover:text-white hover:scale-110 transition-all duration-300">GITHUB</span>
                             </Tooltip>
                         </div>
-                        
+
                         <div className="flex flex-col items-end gap-2">
                             <Tooltip content="Version: v4.2.1 (stable). Build: 20260131.1. Changelog available in documentation.">
                                 <div className="relative text-[10px] font-black uppercase tracking-[0.8em] italic cursor-help">
